@@ -27,6 +27,7 @@ import org.sunbird.service.organisation.OrgService;
 import org.sunbird.service.organisation.impl.OrgServiceImpl;
 import org.sunbird.service.user.impl.*;
 import org.sunbird.util.*;
+import org.sunbird.util.user.ProfileTokenGenerator;
 import org.sunbird.util.user.UserTncUtil;
 import org.sunbird.util.user.UserUtil;
 
@@ -182,6 +183,8 @@ public class UserProfileReadService {
       }
     }
 
+
+    addProfileToken(result, userId, actorMessage.getRequestContext());
 
     calculateProfileCompletionPercentage(result,
             userId, actorMessage.getRequestContext());
@@ -717,6 +720,19 @@ public class UserProfileReadService {
       }
     }
     return retList;
+  }
+
+  /**
+   * Adds the encrypted profileToken attribute to the user read response. Consumers decrypt it back
+   * to a JSON document holding the user's profile status, civil service details, designation,
+   * group, org and roles.
+   */
+  private void addProfileToken(
+      Map<String, Object> result, String userId, RequestContext context) {
+    String profileToken = ProfileTokenGenerator.generate(result, userId, context);
+    if (StringUtils.isNotBlank(profileToken)) {
+      result.put(JsonKey.PROFILE_TOKEN, profileToken);
+    }
   }
 
   private void mapUserRoles(Map<String, Object> result) {

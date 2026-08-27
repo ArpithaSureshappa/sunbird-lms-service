@@ -693,6 +693,14 @@ public final class JsonKey {
     public static final String DESIGNATION = "designation";
     public static final String GROUP = "group";
     public static final String PROFESSIONAL_DETAILS = "professionalDetails";
+    public static final String CADRE_DETAILS = "cadreDetails";
+    public static final String CADRE_NAME = "cadreName";
+    public static final String CADRE_BATCH = "cadreBatch";
+    public static final String CIVIL_SERVICE_NAME = "civilServiceName";
+    public static final String SERVICE_TYPE = "serviceType";
+    public static final String CADRE = "cadre";
+    public static final String BATCH = "batch";
+    public static final String PROFILE_TOKEN = "profileToken";
     public static final String USER_PUBLIC_SEARCH_API_FIELDS = "user_public_search_api_fields";
     public static final String USER_CREATION_REDIS_TTL = "userCreationRedisTTL";
     public static final String USER_BASIC_PROFILE_READ_FIELDS = "user_basic_profile_read_fields";
